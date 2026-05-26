@@ -311,10 +311,12 @@ body {
 /* Sub-line below a stat value (e.g. "On-site · France") */
 .stat-detail {
     display: block;
-    font-size: 0.7rem;
-    color: #9ca3af;
-    font-weight: 400;
-    margin-top: 2px;
+    font-size: 0.88rem;
+    color: #374151;
+    font-weight: 500;
+    margin-top: 4px;
+    padding-top: 4px;
+    border-top: 1px solid #f0eeea;
 }
 
 /* =========================================
