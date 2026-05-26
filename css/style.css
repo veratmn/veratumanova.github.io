@@ -1,0 +1,764 @@
+/* =========================================
+   RESET & BASE
+   ========================================= */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #f0eeea;
+    color: #111111;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   RESUME FAB — pill with icon + "CV" text
+   ========================================= */
+.resume-fab {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 999;
+    border-radius: 100px;
+    padding: 10px 16px 10px 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: #333333;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+
+.resume-fab:hover {
+    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+/* =========================================
+   HERO — light coral → page background
+   ========================================= */
+.hero {
+    background: linear-gradient(180deg,
+        #E86B55 0%,
+        #F09282 28%,
+        #F9E4DC 58%,
+        #f0eeea 85%
+    );
+    padding: 56px 24px 32px;
+    text-align: center;
+}
+
+.hero-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.avatar-wrapper {
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+    background: #c06050;
+    flex-shrink: 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.avatar-fallback {
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 800;
+    color: #ffffff;
+    background: #c05040;
+}
+
+.hero-name {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    margin-top: 4px;
+}
+
+.hero-title {
+    font-size: 0.95rem;
+    color: #5a5a5a;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+.hero-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hero-tag {
+    background: rgba(255, 255, 255, 0.65);
+    color: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    backdrop-filter: blur(4px);
+}
+
+.hero-links {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.hero-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(4px);
+    transition: all 0.2s ease;
+}
+
+.hero-link:hover {
+    color: rgba(0, 0, 0, 0.8);
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 0, 0, 0.18);
+}
+
+/* =========================================
+   MAIN LAYOUT
+   ========================================= */
+.main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* =========================================
+   CARDS (base)
+   ========================================= */
+.card {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 22px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.04);
+}
+
+/* =========================================
+   SHARED CHEVRON
+   ========================================= */
+.chevron {
+    display: inline-flex;
+    color: #9ca3af;
+    transition: transform 0.25s ease;
+    line-height: 0;
+    flex-shrink: 0;
+}
+
+.chevron.rotated { transform: rotate(180deg); }
+
+/* =========================================
+   BIO (collapsible, 3 lines default)
+   ========================================= */
+.bio-card { padding: 20px 22px; }
+
+.bio-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.bio-text {
+    flex: 1;
+    font-size: 0.93rem;
+    color: #374151;
+    line-height: 1.75;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.bio-text.expanded {
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+}
+
+.bio-chevron-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 0;
+    flex-shrink: 0;
+    margin-top: 3px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================================
+   SPECIALTIES CARD
+   ========================================= */
+.specialties-card { padding: 20px 22px 22px; }
+
+.specialties-label {
+    display: block;
+    font-size: 0.73rem;
+    color: #9ca3af;
+    font-weight: 400;
+    margin-bottom: 14px;
+    letter-spacing: 0.01em;
+}
+
+.tags-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    background: #f3f4f6;
+    border-radius: 100px;
+    padding: 7px 16px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #374151;
+    font-family: 'Inter', -apple-system, sans-serif;
+    border: 1px solid #eaebec;
+    line-height: 1.3;
+    transition: background 0.15s;
+}
+
+.tag:hover { background: #eaebee; }
+
+/* =========================================
+   STATS — two centered cards
+   ========================================= */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.stat-card {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2px;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.73rem;
+    color: #9ca3af;
+    font-weight: 400;
+    margin-bottom: 4px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111111;
+}
+
+/* Sub-line below a stat value (e.g. "On-site · France") */
+.stat-detail {
+    display: block;
+    font-size: 0.7rem;
+    color: #9ca3af;
+    font-weight: 400;
+    margin-top: 2px;
+}
+
+/* =========================================
+   TWO-COLUMN SECTION (Education | Experience)
+   ========================================= */
+.two-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.two-col-left,
+.two-col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* =========================================
+   SECTION WRAPPER
+   ========================================= */
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.section-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #111111;
+    letter-spacing: -0.1px;
+    padding-left: 2px;
+}
+
+/* =========================================
+   EDUCATION CARD
+   ========================================= */
+.edu-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.edu-section-label {
+    display: block;
+    font-size: 0.73rem;
+    color: #9ca3af;
+    font-weight: 400;
+    padding: 16px 18px 10px;
+}
+
+.edu-entry {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 18px 16px;
+}
+
+.edu-divider {
+    height: 1px;
+    background: #f3f4f6;
+    margin: 0 18px;
+}
+
+.edu-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #111111;
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: 0.3px;
+}
+
+.edu-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    padding-top: 1px;
+}
+
+.edu-degree {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #111111;
+    display: block;
+}
+
+.edu-school {
+    font-size: 0.82rem;
+    color: #374151;
+    font-weight: 400;
+    display: block;
+    line-height: 1.35;
+}
+
+.edu-field {
+    font-size: 0.78rem;
+    color: #9ca3af;
+    display: block;
+    margin-top: 1px;
+}
+
+/* =========================================
+   EXPERIENCE CARDS
+   ========================================= */
+.exp-card { padding: 0; overflow: hidden; }
+
+.exp-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.exp-header:focus-visible {
+    outline: 2px solid #E86B55;
+    outline-offset: -2px;
+    border-radius: 22px;
+}
+
+.exp-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #111111;
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: 0.5px;
+}
+
+.exp-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    flex: 1;
+    min-width: 0;
+}
+
+.exp-role {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #111111;
+    line-height: 1.3;
+    display: block;
+}
+
+.exp-company {
+    font-size: 0.78rem;
+    color: #6b7280;
+    font-weight: 400;
+    display: block;
+}
+
+.exp-dates {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    display: block;
+    margin-top: 1px;
+}
+
+.exp-body {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px 18px 18px;
+    border-top: 1px solid #f3f4f6;
+    animation: fadeIn 0.2s ease;
+}
+
+.exp-body.open { display: flex; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-3px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.exp-description {
+    font-size: 0.84rem;
+    color: #374151;
+    line-height: 1.65;
+}
+
+.exp-achievements-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.exp-achievements {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.exp-achievements li {
+    font-size: 0.84rem;
+    color: #374151;
+    line-height: 1.6;
+    padding-left: 14px;
+    position: relative;
+}
+
+.exp-achievements li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #9ca3af;
+}
+
+.exp-achievements strong {
+    color: #111111;
+    font-weight: 600;
+}
+
+/* =========================================
+   PERSONAL ACHIEVEMENTS
+   ========================================= */
+.award-card {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 20px 22px;
+}
+
+.award-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.award-meta { display: flex; flex-direction: column; gap: 5px; }
+
+.award-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #111111;
+    display: block;
+}
+
+.award-desc {
+    font-size: 0.82rem;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+/* =========================================
+   INTERPERSONAL SKILLS
+   ========================================= */
+.skills-card { padding: 0; overflow: hidden; }
+
+.skills-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 18px 18px;
+}
+
+.skills-list {
+    list-style: none;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.skill-item { padding: 10px 0; }
+.skill-item:first-child { padding-top: 2px; }
+.skill-item:last-child  { padding-bottom: 2px; }
+.skill-item + .skill-item { border-top: 1px solid #f5f5f5; }
+
+.skill-name-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.skill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #d1d5db;
+    flex-shrink: 0;
+}
+
+.skill-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #111111;
+}
+
+.skill-desc {
+    display: none;
+    font-size: 0.82rem;
+    color: #6b7280;
+    line-height: 1.62;
+    margin-top: 5px;
+    padding-left: 14px;
+    animation: fadeIn 0.18s ease;
+}
+
+.skills-list.open .skill-desc { display: block; }
+
+.skills-chevron-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 0;
+    flex-shrink: 0;
+    margin-top: 4px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.skills-chevron-btn:focus-visible {
+    outline: 2px solid #E86B55;
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+
+/* =========================================
+   FUN FACT
+   ========================================= */
+.fun-card { padding: 20px 22px; }
+
+.fun-text {
+    font-size: 0.9rem;
+    color: #6b7280;
+    font-style: italic;
+    line-height: 1.72;
+}
+
+/* =========================================
+   CTA
+   ========================================= */
+.cta-section { padding: 0; }
+
+.cta-card {
+    text-align: center;
+    padding: 36px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.cta-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111111;
+    letter-spacing: -0.1px;
+}
+
+.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #111111;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 13px 36px;
+    border-radius: 100px;
+    font-size: 0.93rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.14);
+}
+
+.cta-btn:hover {
+    background: #2a2a2a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+.cta-btn:active { transform: translateY(0); }
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.footer {
+    text-align: center;
+    padding: 16px 20px 32px;
+    color: #9ca3af;
+    font-size: 0.73rem;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (min-width: 580px) {
+    .hero { padding: 64px 24px 40px; }
+
+    .avatar-wrapper { width: 124px; height: 124px; }
+
+    .hero-name { font-size: 3rem; }
+
+    .main {
+        padding: 24px 28px 100px;
+        gap: 22px;
+    }
+
+    .two-col { grid-template-columns: 1fr 1fr; }
+
+    .card             { padding: 24px; }
+    .specialties-card { padding: 22px 24px 24px; }
+    .bio-card         { padding: 22px 24px; }
+    .stat-card        { padding: 20px 24px; }
+    .fun-card         { padding: 22px 24px; }
+    .award-card       { padding: 22px 24px; }
+
+    .edu-section-label { padding: 18px 20px 10px; }
+    .edu-entry         { padding: 10px 20px 18px; }
+    .edu-divider       { margin: 0 20px; }
+
+    .exp-header { padding: 18px 20px; }
+    .exp-body   { padding: 14px 20px 20px; }
+
+    .skills-inner { padding: 20px 22px; }
+    .cta-card     { padding: 40px 32px; }
+}
+
+@media (min-width: 768px) {
+    .hero-name { font-size: 3.4rem; }
+    .main { padding: 28px 0 100px; }
+}
