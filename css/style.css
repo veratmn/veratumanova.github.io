@@ -18,7 +18,7 @@ body {
 }
 
 /* =========================================
-   RESUME FAB — pill with icon + "CV" text
+   RESUME FAB вЂ” pill with icon + "CV" text
    ========================================= */
 .resume-fab {
     position: fixed;
@@ -51,7 +51,7 @@ body {
 }
 
 /* =========================================
-   HERO — light coral → page background
+   HERO вЂ” light coral в†’ page background
    ========================================= */
 .hero {
     background: linear-gradient(180deg,
@@ -276,7 +276,7 @@ body {
 .tag:hover { background: #eaebee; }
 
 /* =========================================
-   STATS — two centered cards
+   STATS вЂ” two centered cards
    ========================================= */
 .stats-grid {
     display: grid;
@@ -301,22 +301,21 @@ body {
     margin-bottom: 4px;
 }
 
+/* "рџЊЌ Remote" вЂ” slightly reduced so both lines feel equal */
 .stat-value {
     display: block;
-    font-size: 0.93rem;
+    font-size: 0.92rem;
     font-weight: 700;
     color: #111111;
 }
 
-/* Sub-line below a stat value (e.g. "On-site · France") */
+/* "On-site В· France" вЂ” bumped up to match, no extra padding so card stays same size */
 .stat-detail {
     display: block;
     font-size: 0.88rem;
     color: #374151;
     font-weight: 500;
-    margin-top: 4px;
-    padding-top: 4px;
-    border-top: 1px solid #f0eeea;
+    margin-top: 2px;
 }
 
 /* =========================================
@@ -542,7 +541,7 @@ body {
 }
 
 .exp-achievements li::before {
-    content: '•';
+    content: 'вЂў';
     position: absolute;
     left: 0;
     color: #9ca3af;
